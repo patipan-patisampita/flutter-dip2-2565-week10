@@ -11,10 +11,12 @@ class TextFieldDemo extends StatelessWidget{
         backgroundColor: Colors.indigo,
       ),
       body: Container(
+        margin: EdgeInsets.all(20.0),
         child: TextField(
           maxLength: 10,
           decoration: InputDecoration(
             labelText: "Username",
+            hintText: "Enter fullname please",
             prefixIcon: Icon(Icons.add_a_photo),
             border: OutlineInputBorder(),
           ),
