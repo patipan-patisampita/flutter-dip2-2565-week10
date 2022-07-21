@@ -8,6 +8,8 @@ class FormDemo extends StatefulWidget {
 }
 
 class _FormDemoState extends State<FormDemo> {
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,15 +20,27 @@ class _FormDemoState extends State<FormDemo> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
+          key: _formkey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                validator: (value){
+                  if(value == ""){
+                    return "Field is required";
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
-                  labelText: "Home",
+                  labelText: "Name",
                   border: OutlineInputBorder(),
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Print"))
+              ElevatedButton(onPressed: () {
+                if(_formkey.currentState!.validate() == true){
+                    print("Form Submitted Successfully");
+                }
+              }, child: Text("Submit"))
             ],
           ),
         ),
